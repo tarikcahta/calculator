@@ -1,0 +1,54 @@
+body {
+    background-color: darkslategray;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+}
+
+input {
+    width: 80%;
+    height: 50px;
+}
+
+a {
+    background-color:darkolivegreen;
+    color: aliceblue;
+    padding: 40px 50px;
+    border-radius: 20px;
+
+}
+
+.displayText {
+    margin-top: 15px;
+    font-size: 22px;
+    color: whitesmoke;
+}
+
+.content {
+    margin-top: 100px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#calcNums {
+    height: 500px;
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.calcRows {
+    width: 100%;
+    margin-top: 40px;
+    font-size: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
