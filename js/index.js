@@ -1,82 +1,73 @@
-const screenDisplay = document.getElementById("inputField");
+let lowerNum = "";
+let upperNum = "";
+let currentOperation = null;
+
 const numButtons = document.querySelectorAll("[data-number]");
 const operButtons = document.querySelectorAll("[data-operation]");
 const equalButton = document.querySelector("[data-equals]");
-const delButton = document.querySelector("[data-delete]");
+const deleteButton = document.querySelector("[data-delete]");
 const clearAllButton = document.querySelector("[data-clear-all]");
-const prevOperandTextElem = document.querySelector("[data-prev-operand]");
-const currOperandTextElem = document.querySelector("[data-curr-operand]");
+const prevNumberTextEl = document.getElementById("prevNumber");
+const currNumberTextEl = document.getElementById("currNumber");
 
-let upperOperand = "";
-let lowerOperand = "";
-let currOperation = null;
-
-numButtons.forEach((numButton) => {
-  numButton.addEventListener("click", () =>
-    appendNumber(numButton.textContent)
-  );
+numButtons.forEach((numBtn) => {
+  numBtn.addEventListener("click", () => appendNumber(numBtn.textContent));
 });
 
-operButtons.forEach((operButton) => {
-  operButton.addEventListener("click", () =>
-    chooseOperation(operButton.textContent)
-  );
+operButtons.forEach((operBtn) => {
+  operBtn.addEventListener("click", () => chooseOperation(operBtn.textContent));
 });
 
-equalButton.addEventListener("click", () => evaluate());
-delButton.addEventListener("click", () => deleteNum());
 clearAllButton.addEventListener("click", () => clear());
+deleteButton.addEventListener("click", () => deleteNum());
+equalButton.addEventListener("click", () => evaluate());
 window.addEventListener("keydown", handleKeyBoardInput);
 
-function appendNumber(btn) {
-  if (btn === "." && lowerOperand.includes(".")) return;
-  currOperandTextElem.textContent += btn;
-  lowerOperand = currOperandTextElem.textContent;
+function clear() {
+  currentOperation = null;
+  currNumberTextEl.textContent = "";
+  prevNumberTextEl.textContent = "";
+  upperNum = "";
+  lowerNum = "";
+}
+
+function deleteNum() {
+  currNumberTextEl.textContent = currNumberTextEl.textContent
+    .toString()
+    .slice(0, -1);
+}
+
+function appendNumber(num) {
+  if (num === "." && lowerNum.includes(".")) return;
+  currNumberTextEl.textContent += num;
+  lowerNum = currNumberTextEl.textContent;
 }
 
 function chooseOperation(operator) {
-  if (currOperation !== null) evaluate();
-  upperOperand = currOperandTextElem.textContent;
-  currOperation = operator;
-  prevOperandTextElem.textContent = `${upperOperand} ${currOperation} `;
-  currOperandTextElem.textContent = "";
+  if (currentOperation !== null) evaluate();
+  upperNum = currNumberTextEl.textContent;
+  currentOperation = operator;
+  prevNumberTextEl.textContent = `${upperNum} ${operator}`;
+  currNumberTextEl.textContent = "";
 }
 
 function evaluate() {
-  if (currOperation === null) return;
-  if (currOperation === "/" && currOperandTextElem.textContent === "0") {
-    alert("You DO know that you can not divide by 0! Right?");
-    clear();
-    return;
+  if (currentOperation === null) return;
+  if (currNumberTextEl.textContent === "0" && currentOperation === "/") {
+    alert("You DO KNOW that you can not divide by zero! Right ?");
+    return clear();
   }
-  if (lowerOperand === "" || upperOperand === "") return clear();
-
-  lowerOperand = currOperandTextElem.textContent;
-  currOperandTextElem.textContent = resultRounded(
-    operate(currOperation, upperOperand, lowerOperand)
+  if (lowerNum === "" || upperNum === "") return clear();
+  lowerNum = currNumberTextEl.textContent;
+  currNumberTextEl.textContent = resultRounded(
+    operate(currentOperation, upperNum, lowerNum)
   );
-
-  prevOperandTextElem.textContent = `${upperOperand} ${currOperation} ${lowerOperand} =`;
-
-  currOperation = null;
+  prevNumberTextEl.textContent = `${upperNum} ${currentOperation} ${lowerNum} =`;
+  currentOperation = null;
 }
 
 function resultRounded(number) {
   return Math.round(number * 1000) / 1000;
-}
-
-function clear() {
-  currOperandTextElem.textContent = "";
-  prevOperandTextElem.textContent = "";
-  prevOperand = "";
-  currOperand = "";
-  currOperation = null;
-}
-
-function deleteNum() {
-  currOperandTextElem.textContent = currOperandTextElem.textContent
-    .toString()
-    .slice(0, -1);
 }
 
 function handleKeyBoardInput(e) {

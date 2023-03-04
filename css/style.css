@@ -1,153 +1,128 @@
 body {
-  background-color: rgb(86, 121, 121);
   height: 100vh;
   width: 100vw;
+  margin: 0;
+  background-color: rgb(21, 49, 49);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-self: center;
+}
+
+main {
+  font-family: "PT Mono", monospace;
+  border: 1px solid black;
+  background-color: rgb(93, 103, 104);
+  min-width: 85%;
+  min-height: 62%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 button {
+  padding: 1em 1em;
+  border-radius: 20px;
   cursor: pointer;
-  padding: 1.1rem 1.3rem;
-  border-radius: 20px;
-  font-size: 28px;
-  margin-right: 5px;
-}
-
-.result {
-  font-family: "Stardos Stencil", cursive;
-  margin-top: 10px;
-  width: 82%;
-  height: 95px;
-  font-size: 30px;
-  background-color: whitesmoke;
-  color: rgba(0, 0, 0, 0.85);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.result .prev-operand {
   font-size: 22px;
-  margin-right: 10px;
 }
 
-.result .curr-operand {
-  margin-right: 10px;
-}
-
-.result div {
-  text-align: right;
-}
-
-.content {
-  background-color: rgb(112, 107, 107);
-  border-radius: 15px;
-  margin-top: 110px;
-  min-width: 75%;
-  min-height: 65%;
+.displayField {
+  font-family: "Stardos Stencil", cursive;
+  font-size: 25px;
+  width: 80%;
+  height: 100px;
+  margin-top: 20px;
+  background-color: azure;
+  color: rgb(5, 5, 51);
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: end;
+}
+
+.displayField div {
+  margin: 10px 15px 0px 5px;
+}
+
+.displayField #prevNumber {
+  font-size: 21px;
+  opacity: 80%;
+}
+
+.btnsDiv {
+  width: 100%;
+  display: grid;
   justify-content: center;
   align-items: center;
+  grid-template-columns: repeat(4, 80px);
+  gap: 5px;
 }
 
-.calcRows {
-  width: 100%;
-  margin-top: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+button:nth-of-type(17) {
+  grid-column: 1 / 3;
 }
 
-.lastCalcRow {
-  width: 100%;
-  justify-content: center;
-}
-
-.delRow {
-  width: 100%;
-}
-
-.delRow button {
-  padding: 1.1rem 2.1rem;
-}
-
-.delRow button:hover {
-  background-color: rgb(95, 30, 156);
-  color: aliceblue;
+button:nth-of-type(18) {
+  grid-column: 3 / 5;
 }
 
 .num {
-  background-color: beige;
-  color: rgb(68, 2, 68);
+  background-color: rgb(32, 32, 119);
+  color: azure;
 }
 
 .num:hover {
-  background-color: royalblue;
-  color: aliceblue;
+  background-color: rgb(35, 35, 214);
 }
 
 .operator {
-  background-color: darkkhaki;
+  background-color: rgba(184, 91, 26, 0.904);
+  color: azure;
 }
 
 .operator:hover {
-  background-color: midnightblue;
-  color: beige;
+  background-color: rgba(235, 137, 67, 0.904);
 }
 
-.del-n-clear {
-  background-color: lightcoral;
+.del {
+  background-color: rgb(194, 14, 110);
+  color: azure;
 }
 
-.dotBtn {
-  padding: 1.3rem 1.5rem;
+.del:hover {
+  background-color: rgb(243, 30, 144);
 }
 
-#calcNums {
-  margin-top: 20px;
-  width: 80%;
+.delBtns {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-@media only screen and (min-width: 500px) {
- .content {
-  min-width: 45%;
- }
+@media screen and (min-width: 500px) {
+  main {
+    min-width: 70%;
+  }
 }
 
-@media only screen and (min-width: 750px) {
-  .content {
+@media screen and (min-width: 700px) {
+  main {
     min-width: 50%;
-    min-height: 75%;
-  }
-
-  button {
-    padding: 1.8rem 2.2rem;
-  }
-
-  .dotBtn {
-    padding: 1.5rem 2.5rem;
-  }
-
-  .delRow button {
-    padding: 1.5rem 4rem;
   }
 }
 
-@media only screen and (min-width: 1050px) {
-  .content {
-    min-width: 38%;
+@media screen and (min-width: 1150px) {
+  main {
+    min-width: 33%;
   }
 }
 
-@media only screen and (min-width: 1300px) {
-  .content {
-    min-width: 27%;
-    min-height: 75%;
+@media screen and (min-width: 1300px) {
+  main {
+    min-width: 23%;
   }
 }
