@@ -13,8 +13,8 @@ main {
   font-family: "PT Mono", monospace;
   border: 1px solid black;
   background-color: rgb(93, 103, 104);
-  min-width: 85%;
-  min-height: 62%;
+  min-width: 89%;
+  min-height: 67%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
